@@ -2,6 +2,7 @@ package com.dev.travis.bookstore;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.travis.bookstore.Adapter.RecyclerViewBook;
@@ -23,7 +24,10 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void bindData(Book book) {
-
         Toast.makeText(getApplicationContext(),book.getAuthor(),Toast.LENGTH_LONG).show();
+        TextView author = findViewById(R.id.book_detail_author);
+        TextView title = findViewById(R.id.book_detail_title);
+        author.setText(book.getAuthor());
+        title.setText(book.getTitle());
     }
 }
