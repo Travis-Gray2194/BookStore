@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Book implements Serializable {
@@ -27,7 +28,7 @@ public class Book implements Serializable {
     }
 
     public Book(Doc doc) {
-//        this.openLibraryId = (doc.getIdLibrarything() != null || doc.getIdLibrarything().size() != 0) ? doc.getIdLibrarything().get(0) : "10920192021"  ;
+        this.openLibraryId = (doc.getIdLibrarything() != null) ? doc.getIdLibrarything().get(0) : "10920192021";
         this.author = doc.getAuthorName() != null && doc.getAuthorName().size() != 0 ? doc.getAuthorName().get(0) : "Author name"  ;
         this.title =  doc.getTitle() != null ? doc.getTitle() : "Empty Title";
 
@@ -46,11 +47,14 @@ public class Book implements Serializable {
     }
     // Get medium sized book cover from covers API
     public String getCoverURl() {
-        return "http://covers.openlibrary.org/b/olid/" + openLibraryId + "-M.jpg?default=false";
+        return getLargeCoverUrl();
     }
     // Get large sized book cover from covers API
     public String getLargeCoverUrl() {
-        return "http://covers.openlibrary.org/b/olid/" + openLibraryId + "-L.jpg?default=false";
+
+
+        return "http://covers.openlibrary.org/b/isbn/9780385533225-S.jpg"+openLibraryId+".jpg";
+//        return "http://covers.openlibrary.org/b/olid/" + openLibraryId + "-L.jpg?default=false";
     }
 
     // Returns a Book given the expected JSON
