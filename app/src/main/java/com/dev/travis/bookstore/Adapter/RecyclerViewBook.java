@@ -5,18 +5,14 @@ import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dev.travis.bookstore.Book;
-import com.dev.travis.bookstore.BookAdapter;
 import com.dev.travis.bookstore.BookDetailActivity;
-import com.dev.travis.bookstore.MainActivity;
 import com.dev.travis.bookstore.R;
 import com.squareup.picasso.Picasso;
 
@@ -24,7 +20,7 @@ import java.util.List;
 
 public class RecyclerViewBook extends RecyclerView.Adapter<RecyclerViewBook.ViewHolder> {
 
-    public static String bookExtra = "BookExtras";
+    public static final String BOOK_EXTRA = "BookExtras";
     private Context appContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -38,7 +34,6 @@ public class RecyclerViewBook extends RecyclerView.Adapter<RecyclerViewBook.View
             ivCover = (ImageView) itemView.findViewById(R.id.ivBookCover);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             tvAuthor = (TextView) itemView.findViewById(R.id.tvAuthor);
-
 
         }
     }
@@ -83,7 +78,7 @@ public class RecyclerViewBook extends RecyclerView.Adapter<RecyclerViewBook.View
             @Override
             public void onClick(View v) {
                 Intent bookdetialview = new Intent(v.getContext(), BookDetailActivity.class);
-                bookdetialview.putExtra(bookExtra,mBooks.get(position));
+                bookdetialview.putExtra(BOOK_EXTRA,mBooks.get(position));
                 v.getContext().startActivity(bookdetialview);
             }
         });
