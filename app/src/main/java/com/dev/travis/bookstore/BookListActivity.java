@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.dev.travis.bookstore.Adapter.RecyclerViewBook;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -19,22 +20,11 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.entity.mime.Header;
 
 public class BookListActivity extends AppCompatActivity {
-    private RecyclerView rvBooks;
+    private RecyclerViewBook rvBooks;
     private BookAdapter bookAdapter;
     private BookClient client;
 
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.item_book);
-//        RecyclerView rvBooks = findViewById(R.id.rvBooks);
-//        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(BookListActivity.this, LinearLayoutManager.HORIZONTAL, false )
-//        rvBooks.setLayoutManager(horizontalLayoutManager);
-//        ArrayList<Book> aBooks = new ArrayList<Book>();
-//        bookAdapter = new BookAdapter(this, aBooks);
-//        rvBooks.setAdapter(bookAdapter);
-//    }
+    public static final String BOOK_DETAIL_KEY = "book";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +32,8 @@ public class BookListActivity extends AppCompatActivity {
         // Fetch the data remotely
          fetchBooks();
     }
+
+
 
     // Executes an API call to the OpenLibrary search endpoint, parses the results
     // Converts them into an array of book objects and adds them to the adapter

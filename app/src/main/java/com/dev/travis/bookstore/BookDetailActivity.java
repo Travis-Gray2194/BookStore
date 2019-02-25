@@ -11,11 +11,11 @@ public class BookDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),BookDetailActivity.this));
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(viewPager);
+//
+//        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+////        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),BookDetailActivity.this));
+//
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+//        tabLayout.setupWithViewPager(viewPager);
     }
 }

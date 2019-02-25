@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.dev.travis.bookstore.Adapter.RecyclerViewBook;
 import com.dev.travis.bookstore.Models.Doc;
 import com.dev.travis.bookstore.Models.SearchResults;
 
@@ -21,9 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private ListView lvBooks;
-    private BookAdapter bookAdapter;
-    private BookAdapter bookAdapter2;
+    private RecyclerView rvBooks;
+    private RecyclerViewBook bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +34,28 @@ public class MainActivity extends AppCompatActivity  {
                 .baseUrl("https://openlibrary.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        final ListView lvbooks= (ListView) findViewById(R.id.lvBooks);
+
+        final RecyclerView rvBooks= (RecyclerView) findViewById(R.id.rvBooks);
         final ArrayList<Book> aBooks = new ArrayList<Book>();
-        bookAdapter = new BookAdapter(this,0,aBooks);
-        lvbooks.setAdapter(bookAdapter);
+        bookAdapter = new RecyclerViewBook(this,aBooks);
+
+
+        rvBooks.setAdapter(bookAdapter);
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rvBooks.setLayoutManager(layoutManager);
         BookService.iBookService service = retrofit.create(BookService.iBookService.class);
+
+
 
         service.Search("Lord of the Rings").enqueue(new Callback<SearchResults>() {
             @Override
             public void onResponse(Call<SearchResults> call, Response<SearchResults> response) {
                 System.out.println("Test1");
-                bookAdapter2 = new BookAdapter(getApplicationContext(),0,aBooks);
                 List<Doc> dox = response.body().getDocs();
                 ArrayList<Book> docstobook = MainActivity.convertdocs(response.body().getDocs());
-                BookAdapter bookAdapter2 = new BookAdapter(getApplicationContext(),0,docstobook);
-                lvbooks.setAdapter(bookAdapter2);
+                bookAdapter = new RecyclerViewBook(getApplicationContext(),docstobook);
+                rvBooks.setAdapter(bookAdapter);
 
 
             }
@@ -62,6 +69,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
     }
+
 
     public static ArrayList<Book> convertdocs(List<Doc> docs) {
         ArrayList<Book> retunArrayList = new ArrayList<>();
