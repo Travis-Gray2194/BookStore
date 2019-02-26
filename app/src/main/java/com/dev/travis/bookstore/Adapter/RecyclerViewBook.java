@@ -71,7 +71,7 @@ public class RecyclerViewBook extends RecyclerView.Adapter<RecyclerViewBook.View
         // Populate the data into the template view using the data object
         viewHolder.tvTitle.setText(book.getTitle());
         viewHolder.tvAuthor.setText(book.getAuthor());
-        Picasso.with(appContext).load(Uri.parse(book.getCoverURl())).error(R.drawable.ic_nocover).into(viewHolder.ivCover);
+        Picasso.get().load(Uri.parse(book.getCoverURl())).error(R.drawable.ic_nocover).into(viewHolder.ivCover);
         // Return the completed view to render on screen
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
