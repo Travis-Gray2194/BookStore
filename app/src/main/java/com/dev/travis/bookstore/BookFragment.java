@@ -18,7 +18,7 @@ import android.widget.TextView;
  * Use the {@link BookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookFragment extends Fragment {
+public class BookFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -60,7 +60,7 @@ public class BookFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_book, container, false);
-        TextView textView = (TextView) view;
+        TextView textView = view.findViewById(R.id.textviewBookFragmentImageview);
         textView.setText("Fragment #" + mPage);
         return view;
     }
